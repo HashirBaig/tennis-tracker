@@ -19,6 +19,9 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-blue-100 cursor-pointer underline-offset-4 hover:underline hover:text-blue-400",
+
+        circle:
+          "rounded-full bg-green-50/60 text-green-950 hover:bg-green-50/40 cursor-pointer",
       },
       size: {
         default:

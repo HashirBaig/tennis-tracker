@@ -2,7 +2,11 @@ import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import TennisBallLogo from "@/assets/tennis_ball_logo.png";
 
-function Hero() {
+type TYPE_HERO_PROPS = {
+  reset: () => void;
+};
+
+function Hero({ reset }: TYPE_HERO_PROPS) {
   return (
     <header className="flex items-center justify-between">
       <div className="flex items-center">
@@ -23,7 +27,7 @@ function Hero() {
       </div>
 
       <div>
-        <Button>
+        <Button onClick={reset}>
           <RotateCcw className="size-7" />
           <span>Reset Match</span>
         </Button>
