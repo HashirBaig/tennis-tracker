@@ -71,15 +71,17 @@ function LandingPage() {
           </div>
 
           {/* Game Card */}
-          <div className="w-full mt-8 bg-green-800 rounded-xl space-y-2 p-3">
-            <h1 className="text-center text-green-50 font-extrabold">
-              {`${formData?.player_1} & ${formData?.player_2}`}
-            </h1>
+          {formData?.player_1 && formData?.player_2 && (
+            <div className="w-full mt-8 bg-green-800 rounded-xl space-y-2 p-3">
+              <h1 className="text-center text-green-50 font-extrabold">
+                {`${formData?.player_1} & ${formData?.player_2}`}
+              </h1>
 
-            <div>
-              <h1 className="text-green-50 text-center">Sets</h1>
+              <div>
+                <h1 className="text-green-50 text-center">Sets</h1>
+              </div>
             </div>
-          </div>
+          )}
         </form>
       </div>
     </Wrapper>
