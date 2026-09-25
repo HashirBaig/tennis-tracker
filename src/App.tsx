@@ -8,7 +8,7 @@ import "./App.css";
 function App() {
   return (
     <div className="app">
-      <div className="absolute top-0 left-0 min-w-screen min-h-screen">
+      <div className="absolute top-0 left-0 min-h-screen w-full">
         <Routes>
           <Route path="/" element={<LandingPage />} />
         </Routes>

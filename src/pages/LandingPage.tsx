@@ -2,6 +2,7 @@
 
 import Wrapper from "@/components/Wrapper";
 import Hero from "@/components/Hero";
+import RacketLogo from "@/assets/racket_logo.png";
 
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -96,7 +97,7 @@ function LandingPage() {
           {formData?.player_1 && formData?.player_2 && (
             <div className="w-full mt-8 bg-green-800 rounded-xl space-y-6 p-3">
               <h1 className="text-center text-green-50 font-extrabold">
-                {`${formData?.player_1} & ${formData?.player_2}`}
+                {`${formData?.player_1} VS ${formData?.player_2}`}
               </h1>
 
               <div className="space-y-2">
@@ -152,6 +153,13 @@ function LandingPage() {
               </div>
             </div>
           )}
+
+          <div className="flex items-center justify-center">
+            <Button>
+              <img src={RacketLogo} alt="ball logo" className="w-10 h-auto" />
+              <span>Save Game</span>
+            </Button>
+          </div>
         </form>
       </div>
     </Wrapper>

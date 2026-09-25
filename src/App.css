@@ -8,6 +8,20 @@
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE / old Edge */
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Safari, Edge */
+.app::-webkit-scrollbar {
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {
