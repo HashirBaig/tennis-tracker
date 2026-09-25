@@ -1,25 +1,32 @@
-import { useUserStore } from "@/store/userStore";
-import { useMemo } from "react";
+import { Button } from "@/components/ui/button";
+import { RotateCcw } from "lucide-react";
+import TennisBallLogo from "@/assets/tennis_ball_logo.png";
 
 function Hero() {
-  const username = useUserStore((state) => state.username);
-
-  const userInitials = useMemo(() => {
-    if (!username) return "";
-
-    const parts = username.split("-");
-    const first = parts[0]?.charAt(0).toUpperCase() ?? "";
-    const second = parts[1]?.charAt(0).toUpperCase() ?? "";
-
-    return `${first}${second}`;
-  }, [username]);
-
   return (
-    <header className="flex items-center justify-end">
-      <div className="p-2 cursor-pointer border-3 bg-blue-800/70 border-blue-800/70 rounded-full">
-        <h1 className="text-blue-100 text-2xl font-semibold text-center">
-          {userInitials}
-        </h1>
+    <header className="flex items-center justify-between">
+      <div className="flex items-center">
+        <img
+          src={TennisBallLogo}
+          alt="Tennis ball logo"
+          className="w-20 h-auto"
+        />
+
+        <div className="hidden sm:flex sm:flex-col sm:gap-1">
+          <h1 className="font-semibold text-4xl text-green-50">
+            Tennis Tracker
+          </h1>
+          <span className="text-green-50 text-sm">
+            Keep track of your games and sets. Simple and quick.
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <Button>
+          <RotateCcw className="size-7" />
+          <span>Reset Match</span>
+        </Button>
       </div>
     </header>
   );
