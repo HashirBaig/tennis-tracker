@@ -7,7 +7,8 @@ import RacketLogo from "@/assets/racket_logo.png";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Minus, Plus, Crown } from "lucide-react";
 
 import { useState } from "react";
 
@@ -273,6 +274,32 @@ function LandingPage() {
             </Button>
           </div>
         </form>
+      </div>
+
+      <div className="bg-green-50/90 w-full rounded-xl mt-8 p-5">
+        <h1 className="text-green-950 text-2xl font-semibold text-center sm:text-start">
+          Match History
+        </h1>
+
+        {/* Match Card */}
+        <div className="w-full bg-green-800/90 p-4 rounded-2xl mt-8 space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="text-green-50 font-normal text-center w-fit">
+              Sinner vs Alcaraz
+            </span>
+            <span>
+              {"2"} | {"1"}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-semibold">26/9/20206</span>
+            <Badge className="bg-yellow-500/30 text-yellow-500 border-yellow-500/20 font-semibold">
+              <Crown className="size-4" />
+              Sinner
+            </Badge>
+          </div>
+        </div>
       </div>
     </Wrapper>
   );
