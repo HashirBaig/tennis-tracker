@@ -5,13 +5,13 @@ import Hero from "@/components/Hero";
 import RacketLogo from "@/assets/racket_logo.png";
 import PlayersLogo from "@/assets/players_logo_compressed.png";
 
+import { useState } from "react";
+
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Minus, Plus, Crown } from "lucide-react";
-
-import { useState } from "react";
 
 type TYPE_PLAYER_FORM = {
   playerOne: string;
@@ -46,7 +46,7 @@ function LandingPage() {
     player?: string | null;
   }) => {
     if (!player) {
-      if (incr && gameCounter >= 0) {
+      if (incr && gameCounter > 0) {
         setGameCounter(gameCounter + 1);
       } else if (!incr && gameCounter > 1) {
         setGameCounter(gameCounter - 1);
@@ -54,7 +54,7 @@ function LandingPage() {
     }
 
     if (player === "one") {
-      if (incr && gameCounter >= 0) {
+      if (incr && gameCounter > 0 && player1Games <= gameCounter) {
         setPlayer1Games(player1Games + 1);
       } else if (!incr && player1Games > 0 && gameCounter > 0) {
         setPlayer1Games(player1Games - 1);
@@ -62,7 +62,7 @@ function LandingPage() {
     }
 
     if (player === "two") {
-      if (incr && gameCounter >= 0) {
+      if (incr && gameCounter > 0 && player2Games <= gameCounter) {
         setPlayer2Games(player2Games + 1);
       } else if (!incr && player2Games > 0 && gameCounter > 0) {
         setPlayer2Games(player2Games - 1);
@@ -93,6 +93,7 @@ function LandingPage() {
       };
 
       console.log("formdata: ", _data);
+      resetGame();
     } catch (error) {
       console.error(error);
     }
@@ -220,10 +221,10 @@ function LandingPage() {
                         variant={"circle"}
                         className={"w-fit"}
                         onClick={() =>
-                          handleGame({ incr: false, player: "one" })
+                          handleGame({ incr: true, player: "one" })
                         }
                       >
-                        <Minus className="size-7" />
+                        <Plus className="size-7" />
                       </Button>
 
                       <span className="text-green-950 bg-green-50/90 w-16 h-16 flex items-center justify-center text-3xl font-semibold rounded-2xl">
@@ -234,10 +235,10 @@ function LandingPage() {
                         variant={"circle"}
                         className={"w-fit"}
                         onClick={() =>
-                          handleGame({ incr: true, player: "one" })
+                          handleGame({ incr: false, player: "one" })
                         }
                       >
-                        <Plus className="size-7" />
+                        <Minus className="size-7" />
                       </Button>
                     </div>
                   </div>
@@ -252,10 +253,10 @@ function LandingPage() {
                         variant={"circle"}
                         className={"w-fit"}
                         onClick={() =>
-                          handleGame({ incr: false, player: "two" })
+                          handleGame({ incr: true, player: "two" })
                         }
                       >
-                        <Minus className="size-7" />
+                        <Plus className="size-7" />
                       </Button>
 
                       <span className="text-green-950 bg-green-50/90 w-16 h-16 flex items-center justify-center text-3xl font-semibold rounded-2xl">
@@ -266,10 +267,10 @@ function LandingPage() {
                         variant={"circle"}
                         className={"w-fit"}
                         onClick={() =>
-                          handleGame({ incr: true, player: "two" })
+                          handleGame({ incr: false, player: "two" })
                         }
                       >
-                        <Plus className="size-7" />
+                        <Minus className="size-7" />
                       </Button>
                     </div>
                   </div>
