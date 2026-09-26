@@ -34,8 +34,8 @@ function LandingPage() {
     useState<TYPE_PLAYER_FORM>(PLAYER_FORM_TEMPLATE);
 
   const handleSet = (params: { incr?: boolean }) => {
-    if (params?.incr && setCounter >= 0) setSetCounter(setCounter + 1);
-    else if (!params?.incr && setCounter > 0) setSetCounter(setCounter - 1);
+    if (params?.incr && setCounter >= 1) setSetCounter(setCounter + 1);
+    else if (!params?.incr && setCounter > 1) setSetCounter(setCounter - 1);
   };
 
   const handleGame = ({
@@ -48,7 +48,7 @@ function LandingPage() {
     if (!player) {
       if (incr && gameCounter >= 0) {
         setGameCounter(gameCounter + 1);
-      } else {
+      } else if (!incr && gameCounter > 1) {
         setGameCounter(gameCounter - 1);
       }
     }
@@ -149,7 +149,7 @@ function LandingPage() {
 
           {/* Game Card */}
           {formData?.playerOne && formData?.playerTwo && (
-            <div className="w-full mt-8 bg-green-800/90 rounded-xl space-y-6 p-3">
+            <div className="w-full mt-8 bg-green-800 rounded-xl space-y-6 p-3">
               <h1 className="text-center text-green-50 font-extrabold">
                 {`${formData?.playerOne} VS ${formData?.playerTwo}`}
               </h1>
@@ -283,7 +283,7 @@ function LandingPage() {
         </h1>
 
         {/* Match Card */}
-        <div className="w-full bg-green-800/90 p-4 rounded-2xl mt-8 space-y-2">
+        <div className="w-full bg-green-800 p-4 rounded-2xl mt-8 space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-green-50 font-normal text-center w-fit">
               Sinner vs Alcaraz
