@@ -3,6 +3,7 @@
 import Wrapper from "@/components/Wrapper";
 import Hero from "@/components/Hero";
 import RacketLogo from "@/assets/racket_logo.png";
+import PlayersLogo from "@/assets/players_logo_compressed.png";
 
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -103,9 +104,9 @@ function LandingPage() {
 
       {/* Match Card */}
       <div className="bg-green-50/90 w-full rounded-xl mt-8 p-5">
-        <h1 className="text-green-950 text-2xl font-semibold text-center sm:text-start">
-          Players
-        </h1>
+        <div className="flex items-center justify-center">
+          <img src={PlayersLogo} alt="Player logo" className="w-40 h-auto" />
+        </div>
 
         <form className="mt-8 space-y-4" onSubmit={handleOnSubmit}>
           <div className="space-y-2">
@@ -148,7 +149,7 @@ function LandingPage() {
 
           {/* Game Card */}
           {formData?.playerOne && formData?.playerTwo && (
-            <div className="w-full mt-8 bg-green-800 rounded-xl space-y-6 p-3">
+            <div className="w-full mt-8 bg-green-800/90 rounded-xl space-y-6 p-3">
               <h1 className="text-center text-green-50 font-extrabold">
                 {`${formData?.playerOne} VS ${formData?.playerTwo}`}
               </h1>
@@ -282,14 +283,14 @@ function LandingPage() {
         </h1>
 
         {/* Match Card */}
-        <div className="w-full bg-green-800/90 p-4 rounded-2xl mt-8 space-y-1">
+        <div className="w-full bg-green-800/90 p-4 rounded-2xl mt-8 space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-green-50 font-normal text-center w-fit">
               Sinner vs Alcaraz
             </span>
-            <span>
-              {"2"} | {"1"}
-            </span>
+            <Badge className="bg-gray-50/30 text-gray-50 border-gray-50/20 font-semibold">
+              2 - 1
+            </Badge>
           </div>
 
           <div className="flex items-center justify-between">
