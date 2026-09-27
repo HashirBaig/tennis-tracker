@@ -333,20 +333,22 @@ function LandingPage() {
             Match History
           </h1>
 
-          {/* Match Card */}
-          {matchList?.map((item, idx) => {
-            const { gamesWonByPlayerOne, gamesWonByPlayerTwo, createdDate } =
-              item;
+          <div className="mt-6">
+            {/* Match Card */}
+            {matchList?.map((item, idx) => {
+              const { gamesWonByPlayerOne, gamesWonByPlayerTwo, createdDate } =
+                item;
 
-            const _data = {
-              playerOne: item?.playerOne?.playerName,
-              playerTwo: item?.playerTwo?.playerName,
-              gamesWonByPlayerOne,
-              gamesWonByPlayerTwo,
-              createdDate,
-            };
-            return <MatchCard data={_data} key={`match-card-${idx}`} />;
-          })}
+              const _data = {
+                playerOne: item?.playerOne?.playerName,
+                playerTwo: item?.playerTwo?.playerName,
+                gamesWonByPlayerOne,
+                gamesWonByPlayerTwo,
+                createdDate,
+              };
+              return <MatchCard data={_data} key={`match-card-${idx}`} />;
+            })}
+          </div>
         </LayoutCard>
       </div>
     </Wrapper>

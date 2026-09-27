@@ -18,7 +18,7 @@ function MatchCard({ data }: MatchCardProps) {
   } = data;
 
   return (
-    <div className="w-full bg-green-800 p-4 rounded-2xl mt-8 space-y-2">
+    <div className="w-full bg-green-800 p-4 rounded-2xl my-1 space-y-2">
       <div className="flex items-center justify-between">
         <span className="text-green-50 font-normal text-center w-fit">
           {playerOne} vs {playerTwo}
