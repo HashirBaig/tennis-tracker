@@ -5,18 +5,17 @@ import Hero from "@/components/Hero";
 import RacketLogo from "@/assets/racket_logo.png";
 import PlayersLogo from "@/assets/players_logo_compressed.png";
 import LayoutCard from "@/components/LayoutCard";
+import MatchCard from "@/components/MatchCard";
 
-import { useState } from "react";
-
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
+import { useEffect, useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Minus, Plus, Crown } from "lucide-react";
-
-import { addMatch } from "@/services/matchService";
-
+import { Minus, Plus } from "lucide-react";
+import { addMatch, getMatchesList } from "@/services/matchService";
 import { toast } from "sonner";
+
+import type { TYPE_MATCH } from "@/lib/const";
 
 type TYPE_PLAYER_FORM = {
   playerOne: string;
@@ -34,15 +33,38 @@ function LandingPage() {
   const [gameCounter, setGameCounter] = useState<number>(1);
   const [player1Games, setPlayer1Games] = useState<number>(0);
   const [player2Games, setPlayer2Games] = useState<number>(0);
+  const [matchList, setMatchList] = useState<TYPE_MATCH[]>([]);
 
   const [formData, setFormData] =
     useState<TYPE_PLAYER_FORM>(PLAYER_FORM_TEMPLATE);
 
+  const getAllMatchesList = async () => {
+    try {
+      setIsLoading(true);
+
+      const res = await getMatchesList();
+
+      if (res) {
+        setMatchList(res?.data?.data);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+      toast.success("Operation failed.");
+    }
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    getAllMatchesList();
+  }, []);
+
+  // On change methods
   const handleSet = (params: { incr?: boolean }) => {
     if (params?.incr && setCounter >= 1) setSetCounter(setCounter + 1);
     else if (!params?.incr && setCounter > 1) setSetCounter(setCounter - 1);
   };
-
   const handleGame = ({
     incr,
     player,
@@ -74,7 +96,6 @@ function LandingPage() {
       }
     }
   };
-
   const resetGame = () => {
     setGameCounter(1);
     setSetCounter(1);
@@ -84,6 +105,7 @@ function LandingPage() {
     setFormData(PLAYER_FORM_TEMPLATE);
   };
 
+  // Save match method
   const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -312,24 +334,19 @@ function LandingPage() {
           </h1>
 
           {/* Match Card */}
-          <div className="w-full bg-green-800 p-4 rounded-2xl mt-8 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-green-50 font-normal text-center w-fit">
-                Sinner vs Alcaraz
-              </span>
-              <Badge className="bg-gray-50/30 text-gray-50 border-gray-50/20 font-semibold">
-                2 - 1
-              </Badge>
-            </div>
+          {matchList?.map((item, idx) => {
+            const { gamesWonByPlayerOne, gamesWonByPlayerTwo, createdDate } =
+              item;
 
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold">26/9/20206</span>
-              <Badge className="bg-yellow-500/30 text-yellow-500 border-yellow-500/20 font-semibold">
-                <Crown className="size-4" />
-                Sinner
-              </Badge>
-            </div>
-          </div>
+            const _data = {
+              playerOne: item?.playerOne?.playerName,
+              playerTwo: item?.playerTwo?.playerName,
+              gamesWonByPlayerOne,
+              gamesWonByPlayerTwo,
+              createdDate,
+            };
+            return <MatchCard data={_data} key={`match-card-${idx}`} />;
+          })}
         </LayoutCard>
       </div>
     </Wrapper>
