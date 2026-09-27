@@ -1,3 +1,1 @@
-export const TASK = "/tasks";
-
-export const USER = "/users";
+export const MATCH = "/matches";

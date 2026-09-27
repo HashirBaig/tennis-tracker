@@ -4,6 +4,7 @@ import Wrapper from "@/components/Wrapper";
 import Hero from "@/components/Hero";
 import RacketLogo from "@/assets/racket_logo.png";
 import PlayersLogo from "@/assets/players_logo_compressed.png";
+import LayoutCard from "@/components/LayoutCard";
 
 import { useState } from "react";
 
@@ -12,6 +13,10 @@ import { Label } from "../components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Minus, Plus, Crown } from "lucide-react";
+
+import { addMatch } from "@/services/matchService";
+
+import { toast } from "sonner";
 
 type TYPE_PLAYER_FORM = {
   playerOne: string;
@@ -24,7 +29,7 @@ const PLAYER_FORM_TEMPLATE = {
 };
 
 function LandingPage() {
-  const [isLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [setCounter, setSetCounter] = useState<number>(1);
   const [gameCounter, setGameCounter] = useState<number>(1);
   const [player1Games, setPlayer1Games] = useState<number>(0);
@@ -79,23 +84,32 @@ function LandingPage() {
     setFormData(PLAYER_FORM_TEMPLATE);
   };
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
+      setIsLoading(true);
+
       const _data = {
         playerOne: formData?.playerOne,
         playerTwo: formData?.playerTwo,
-        sets: setCounter,
-        games: gameCounter,
+        numberOfSets: setCounter,
+        numberOfGames: gameCounter,
         gamesWonByPlayerOne: player1Games,
         gamesWonByPlayerTwo: player2Games,
       };
 
-      console.log("formdata: ", _data);
-      resetGame();
+      const res = await addMatch(_data);
+
+      if (res) {
+        setIsLoading(false);
+        toast.success("Match added successfully!");
+        resetGame();
+      }
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
+      toast.error("Operation failed");
     }
   };
 
@@ -105,12 +119,16 @@ function LandingPage() {
 
       <div className="sm:flex sm:gap-8">
         {/* Match Card */}
-        <div className="bg-green-50/90 w-full rounded-xl mt-8 p-5 sm:flex sm:flex-col sm:grow">
+        <LayoutCard>
           <div className="flex items-center justify-center">
             <img src={PlayersLogo} alt="Player logo" className="w-40 h-auto" />
           </div>
 
-          <form className="mt-8 space-y-4" onSubmit={handleOnSubmit}>
+          <form
+            className="mt-8 space-y-4"
+            onSubmit={handleOnSubmit}
+            aria-disabled={isLoading}
+          >
             <div className="space-y-2">
               <Label
                 htmlFor="player-1"
@@ -279,16 +297,16 @@ function LandingPage() {
             )}
 
             <div className="flex items-center justify-center">
-              <Button type="submit">
+              <Button type="submit" disabled={isLoading}>
                 <img src={RacketLogo} alt="ball logo" className="w-10 h-auto" />
                 <span>Save Game</span>
               </Button>
             </div>
           </form>
-        </div>
+        </LayoutCard>
 
         {/* Match History */}
-        <div className="bg-green-50/90 w-full rounded-xl mt-8 p-5 sm:flex sm:flex-col sm:grow sm:h-fit">
+        <LayoutCard>
           <h1 className="text-green-950 text-2xl font-semibold text-center sm:text-start">
             Match History
           </h1>
@@ -312,7 +330,7 @@ function LandingPage() {
               </Badge>
             </div>
           </div>
-        </div>
+        </LayoutCard>
       </div>
     </Wrapper>
   );
