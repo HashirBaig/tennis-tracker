@@ -32,7 +32,7 @@ function MatchCard({ data }: MatchCardProps) {
         <span className="text-sm font-semibold">
           {dayjs(createdDate).format("DD-MM-YYYY")}
         </span>
-        {gamesWonByPlayerOne && gamesWonByPlayerTwo ? (
+        {gamesWonByPlayerOne || gamesWonByPlayerTwo ? (
           <Badge className="bg-yellow-500/30 text-yellow-500 border-yellow-500/20 font-semibold">
             <Crown className="size-4" />
             {gamesWonByPlayerOne > gamesWonByPlayerTwo ? playerOne : playerTwo}

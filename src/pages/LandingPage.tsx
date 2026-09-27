@@ -8,6 +8,7 @@ import LayoutCard from "@/components/LayoutCard";
 import MatchCard from "@/components/MatchCard";
 
 import { useEffect, useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -23,8 +24,8 @@ type TYPE_PLAYER_FORM = {
 };
 
 const PLAYER_FORM_TEMPLATE = {
-  playerOne: "Sinner",
-  playerTwo: "Alcaraz",
+  playerOne: "",
+  playerTwo: "",
 };
 
 function LandingPage() {
@@ -124,6 +125,7 @@ function LandingPage() {
       const res = await addMatch(_data);
 
       if (res) {
+        getAllMatchesList();
         setIsLoading(false);
         toast.success("Match added successfully!");
         resetGame();
@@ -320,8 +322,18 @@ function LandingPage() {
 
             <div className="flex items-center justify-center">
               <Button type="submit" disabled={isLoading}>
-                <img src={RacketLogo} alt="ball logo" className="w-10 h-auto" />
-                <span>Save Game</span>
+                {isLoading ? (
+                  <Spinner className="size-6" />
+                ) : (
+                  <>
+                    <img
+                      src={RacketLogo}
+                      alt="ball logo"
+                      className="w-10 h-auto"
+                    />
+                    <span>Save Game</span>
+                  </>
+                )}
               </Button>
             </div>
           </form>
