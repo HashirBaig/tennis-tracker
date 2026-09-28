@@ -356,8 +356,8 @@ function LandingPage() {
           </h1>
 
           {isTableLoading ? (
-            <div className="flex items-center justify-center">
-              <Spinner className="size-8 text-green-950" />
+            <div className="flex items-center justify-center h-2/3 w-full">
+              <Spinner className="size-10 text-green-950" />
             </div>
           ) : (
             <>
