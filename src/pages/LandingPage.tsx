@@ -389,7 +389,9 @@ function LandingPage() {
               variant={"circle"}
               onClick={() => setPage(page - 1)}
               disabled={!hasPrevPage}
-              className={"bg-green-900 text-green-50"}
+              className={
+                "bg-green-900 text-green-50 hover:text-gray-900 hover:bg-green-800/50 hover:font-semibold"
+              }
             >
               Back
             </Button>
@@ -397,7 +399,9 @@ function LandingPage() {
               variant={"circle"}
               onClick={() => setPage(page + 1)}
               disabled={!hasNextPage}
-              className={"bg-green-900 text-green-50"}
+              className={
+                "bg-green-900 text-green-50 hover:text-gray-900 hover:bg-green-800/50 hover:font-semibold"
+              }
             >
               Next
             </Button>
