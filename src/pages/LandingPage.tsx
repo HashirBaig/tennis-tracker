@@ -389,6 +389,7 @@ function LandingPage() {
               variant={"circle"}
               onClick={() => setPage(page - 1)}
               disabled={!hasPrevPage}
+              className={"bg-green-900 text-green-50"}
             >
               Back
             </Button>
@@ -396,6 +397,7 @@ function LandingPage() {
               variant={"circle"}
               onClick={() => setPage(page + 1)}
               disabled={!hasNextPage}
+              className={"bg-green-900 text-green-50"}
             >
               Next
             </Button>
