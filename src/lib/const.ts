@@ -3,6 +3,11 @@ type TYPE_PLAYER = {
   playerName: string;
 };
 
+export type TYPE_PAGINATION = {
+  page: number;
+  limit?: number;
+};
+
 export type TYPE_MATCH = {
   playerOne: TYPE_PLAYER;
   playerTwo: TYPE_PLAYER;

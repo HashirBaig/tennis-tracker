@@ -7,13 +7,13 @@ import PlayersLogo from "@/assets/players_logo_compressed.png";
 import LayoutCard from "@/components/LayoutCard";
 import MatchCard from "@/components/MatchCard";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
-import { addMatch, getMatchesList } from "@/services/matchService";
+import { addMatch, getMatchesListService } from "@/services/matchService";
 import { toast } from "sonner";
 
 import type { TYPE_MATCH } from "@/lib/const";
@@ -30,36 +30,46 @@ const PLAYER_FORM_TEMPLATE = {
 
 function LandingPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isTableLoading, setIsTableLoading] = useState<boolean>(false);
   const [setCounter, setSetCounter] = useState<number>(1);
   const [gameCounter, setGameCounter] = useState<number>(1);
   const [player1Games, setPlayer1Games] = useState<number>(0);
   const [player2Games, setPlayer2Games] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
+  const [limit] = useState<number>(4);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(false);
+  const [hasPrevPage, setHasPrevPage] = useState<boolean>(false);
   const [matchList, setMatchList] = useState<TYPE_MATCH[]>([]);
 
   const [formData, setFormData] =
     useState<TYPE_PLAYER_FORM>(PLAYER_FORM_TEMPLATE);
 
-  const getAllMatchesList = async () => {
+  const getAllMatchesList = useCallback(async () => {
     try {
-      setIsLoading(true);
+      setIsTableLoading(true);
 
-      const res = await getMatchesList();
+      const res = await getMatchesListService({ page, limit });
+      const { data, pagination } = res.data;
 
-      if (res) {
-        setMatchList(res?.data?.data);
-        setIsLoading(false);
+      if (data) {
+        setIsTableLoading(false);
+
+        setMatchList(data);
+
+        setHasNextPage(pagination?.hasNextPage);
+        setHasPrevPage(pagination?.hasPrevPage);
       }
     } catch (error) {
-      setIsLoading(false);
+      setIsTableLoading(false);
       console.error(error);
       toast.success("Operation failed.");
     }
-  };
+  }, [page, limit]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     getAllMatchesList();
-  }, []);
+  }, [getAllMatchesList]);
 
   // On change methods
   const handleSet = (params: { incr?: boolean }) => {
@@ -345,8 +355,10 @@ function LandingPage() {
             Match History
           </h1>
 
-          {isLoading ? (
-            <Spinner className="size-8" />
+          {isTableLoading ? (
+            <div className="flex items-center justify-center">
+              <Spinner className="size-8 text-green-950" />
+            </div>
           ) : (
             <>
               <div className="mt-6">
@@ -370,6 +382,24 @@ function LandingPage() {
               </div>
             </>
           )}
+
+          {/* Pagination */}
+          <div className="flex items-center justify-end gap-2 mt-4 text-green-950">
+            <Button
+              variant={"circle"}
+              onClick={() => setPage(page - 1)}
+              disabled={!hasPrevPage}
+            >
+              Back
+            </Button>
+            <Button
+              variant={"circle"}
+              onClick={() => setPage(page + 1)}
+              disabled={!hasNextPage}
+            >
+              Next
+            </Button>
+          </div>
         </LayoutCard>
       </div>
     </Wrapper>

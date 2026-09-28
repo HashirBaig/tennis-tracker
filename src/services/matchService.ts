@@ -1,15 +1,9 @@
 import api from "../lib/axios";
 import { MATCH } from "./apiUrls";
-import type { TYPE_MATCH_PAYLOAD } from "@/lib/const";
+import type { TYPE_MATCH_PAYLOAD, TYPE_PAGINATION } from "@/lib/const";
 
-// type TYPE_GET_TASK_LIST_BY_USER = {
-//   filter: string;
-//   page?: number;
-//   limit?: number;
-// };
-
-export const getMatchesList = () => {
-  return api.get(`${MATCH}`);
+export const getMatchesListService = ({ page, limit }: TYPE_PAGINATION) => {
+  return api.get(`${MATCH}?page=${page}&limit=${limit}`);
 };
 
 export const addMatch = (payload: TYPE_MATCH_PAYLOAD) => {
