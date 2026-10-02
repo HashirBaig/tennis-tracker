@@ -62,7 +62,7 @@ function LandingPage() {
     } catch (error) {
       setIsTableLoading(false);
       console.error(error);
-      toast.success("Operation failed.");
+      toast.error("Operation failed.");
     }
   }, [page, limit]);
 
