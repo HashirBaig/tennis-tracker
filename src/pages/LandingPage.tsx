@@ -6,6 +6,7 @@ import RacketLogo from "@/assets/racket_logo.png";
 import PlayersLogo from "@/assets/players_logo_compressed.png";
 import LayoutCard from "@/components/LayoutCard";
 import MatchCard from "@/components/MatchCard";
+import AlertCard from "@/components/AlertCard";
 
 import { useCallback, useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
@@ -350,11 +351,17 @@ function LandingPage() {
             Match History
           </h1>
 
-          {isTableLoading ? (
+          {!isTableLoading && matchList?.length == 0 && (
+            <AlertCard title="No data found." />
+          )}
+
+          {isTableLoading && matchList?.length == 0 && (
             <div className="flex items-center justify-center h-2/3 w-full">
               <Spinner className="size-10 text-green-950" />
             </div>
-          ) : (
+          )}
+
+          {!isTableLoading && matchList?.length > 0 && (
             <>
               <div className="mt-6">
                 {/* Match Card */}
@@ -369,32 +376,32 @@ function LandingPage() {
                   return <MatchCard data={_data} key={`match-card-${idx}`} />;
                 })}
               </div>
+              <span className="text-green-950">{`mt-list: ${matchList.length}`}</span>
+              {/* Pagination */}
+              <div className="flex items-center justify-end gap-2 mt-4 text-green-950">
+                <Button
+                  variant={"circle"}
+                  onClick={() => setPage(page - 1)}
+                  disabled={!hasPrevPage}
+                  className={
+                    "bg-green-900 text-green-50 hover:text-gray-900 hover:bg-green-800/50 hover:font-semibold"
+                  }
+                >
+                  Back
+                </Button>
+                <Button
+                  variant={"circle"}
+                  onClick={() => setPage(page + 1)}
+                  disabled={!hasNextPage}
+                  className={
+                    "bg-green-900 text-green-50 hover:text-gray-900 hover:bg-green-800/50 hover:font-semibold"
+                  }
+                >
+                  Next
+                </Button>
+              </div>
             </>
           )}
-
-          {/* Pagination */}
-          <div className="flex items-center justify-end gap-2 mt-4 text-green-950">
-            <Button
-              variant={"circle"}
-              onClick={() => setPage(page - 1)}
-              disabled={!hasPrevPage}
-              className={
-                "bg-green-900 text-green-50 hover:text-gray-900 hover:bg-green-800/50 hover:font-semibold"
-              }
-            >
-              Back
-            </Button>
-            <Button
-              variant={"circle"}
-              onClick={() => setPage(page + 1)}
-              disabled={!hasNextPage}
-              className={
-                "bg-green-900 text-green-50 hover:text-gray-900 hover:bg-green-800/50 hover:font-semibold"
-              }
-            >
-              Next
-            </Button>
-          </div>
         </LayoutCard>
       </div>
     </Wrapper>

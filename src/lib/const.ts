@@ -3,6 +3,11 @@ type TYPE_PLAYER = {
   playerName: string;
 };
 
+export type TYPES_ALERT_CARD_PROPS = {
+  title: string;
+  description?: string;
+};
+
 export type TYPE_PLAYER_FORM = {
   playerOne: string;
   playerTwo: string;
