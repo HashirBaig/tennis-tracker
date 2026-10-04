@@ -16,12 +16,7 @@ import { Minus, Plus } from "lucide-react";
 import { addMatch, getMatchesListService } from "@/services/matchService";
 import { toast } from "sonner";
 
-import type { TYPE_MATCH } from "@/lib/const";
-
-type TYPE_PLAYER_FORM = {
-  playerOne: string;
-  playerTwo: string;
-};
+import type { TYPE_MATCH, TYPE_PLAYER_FORM } from "@/lib/const";
 
 const PLAYER_FORM_TEMPLATE = {
   playerOne: "",
@@ -364,18 +359,12 @@ function LandingPage() {
               <div className="mt-6">
                 {/* Match Card */}
                 {matchList?.map((item, idx) => {
-                  const {
-                    gamesWonByPlayerOne,
-                    gamesWonByPlayerTwo,
-                    createdDate,
-                  } = item;
-
                   const _data = {
                     playerOne: item?.playerOne?.playerName,
                     playerTwo: item?.playerTwo?.playerName,
-                    gamesWonByPlayerOne,
-                    gamesWonByPlayerTwo,
-                    createdDate,
+                    gamesWonByPlayerOne: item?.gamesWonByPlayerOne,
+                    gamesWonByPlayerTwo: item?.gamesWonByPlayerTwo,
+                    createdDate: item?.createdDate,
                   };
                   return <MatchCard data={_data} key={`match-card-${idx}`} />;
                 })}

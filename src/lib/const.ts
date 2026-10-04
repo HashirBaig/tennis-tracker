@@ -3,6 +3,11 @@ type TYPE_PLAYER = {
   playerName: string;
 };
 
+export type TYPE_PLAYER_FORM = {
+  playerOne: string;
+  playerTwo: string;
+};
+
 export type TYPE_PAGINATION = {
   page: number;
   limit?: number;
