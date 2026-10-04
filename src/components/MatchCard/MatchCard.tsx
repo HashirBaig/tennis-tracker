@@ -18,21 +18,19 @@ function MatchCard({ data }: MatchCardProps) {
   } = data;
 
   return (
-    <div className="w-full bg-green-800 p-4 rounded-2xl my-1 space-y-2">
+    <div className="w-full bg-green-800 p-4 rounded-2xl my-2 space-y-2 hover:focus-visible:border-green-600 hover:ring-2 hover:ring-green-800/70">
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-2">
-          <div className="space-x-2">
-            <span className="text-green-50 font-normal text-center w-fit">
-              {playerOne} vs {playerTwo}
-            </span>
+          <span className="text-green-50 font-normal text-center w-fit">
+            {playerOne} vs {playerTwo}
+          </span>
 
-            <Badge className="bg-gray-50/30 text-gray-50 border-gray-50/20 font-semibold">
-              {gamesWonByPlayerOne} - {gamesWonByPlayerTwo}
-            </Badge>
-          </div>
+          <Badge className="bg-gray-50/30 text-gray-50 border-gray-50/20 font-semibold">
+            {gamesWonByPlayerOne} - {gamesWonByPlayerTwo}
+          </Badge>
 
-          <span className="text-sm font-semibold">
-            {dayjs(createdDate).format("DD-MM-YYYY")}
+          <span className="text-xs font-semibold text-yellow-500">
+            {dayjs(createdDate).format("DD MMM, YYYY")}
           </span>
         </div>
 
