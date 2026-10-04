@@ -34,20 +34,16 @@ function MatchCard({ data }: MatchCardProps) {
           </span>
         </div>
 
-        <div className="flex items-center">
-          {gamesWonByPlayerOne || gamesWonByPlayerTwo ? (
-            <Badge className="bg-yellow-500/30 text-yellow-500 border-yellow-500/20">
-              <Crown className="size-5" />
-              <span className="text-lg font-normal">
-                {gamesWonByPlayerOne > gamesWonByPlayerTwo
-                  ? playerOne
-                  : playerTwo}
-              </span>
-            </Badge>
-          ) : (
-            ""
-          )}
-        </div>
+        {(gamesWonByPlayerOne || gamesWonByPlayerTwo) && (
+          <Badge className="bg-yellow-500/30 text-yellow-500 border-yellow-500/20">
+            <Crown className="size-5" />
+            <span className="text-lg font-normal">
+              {gamesWonByPlayerOne > gamesWonByPlayerTwo
+                ? playerOne
+                : playerTwo}
+            </span>
+          </Badge>
+        )}
       </div>
     </div>
   );
