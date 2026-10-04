@@ -355,7 +355,7 @@ function LandingPage() {
             <AlertCard title="No data found." />
           )}
 
-          {isTableLoading && matchList?.length == 0 && (
+          {isTableLoading && (
             <div className="flex items-center justify-center h-2/3 w-full">
               <Spinner className="size-10 text-green-950" />
             </div>
