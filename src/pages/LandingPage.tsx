@@ -376,7 +376,6 @@ function LandingPage() {
                   return <MatchCard data={_data} key={`match-card-${idx}`} />;
                 })}
               </div>
-              <span className="text-green-950">{`mt-list: ${matchList.length}`}</span>
               {/* Pagination */}
               <div className="flex items-center justify-end gap-2 mt-4 text-green-950">
                 <Button
