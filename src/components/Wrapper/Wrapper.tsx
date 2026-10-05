@@ -8,7 +8,7 @@ type PropsWithChildren = {
 
 function Wrapper({ children, classnames }: PropsWithChildren) {
   return (
-    <div className={cn("w-full px-8 py-4 relative text-green-50", classnames)}>
+    <div className={cn("w-full px-4 py-5 relative text-green-50", classnames)}>
       {children}
     </div>
   );
