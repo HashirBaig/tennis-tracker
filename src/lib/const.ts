@@ -36,3 +36,15 @@ export type TYPE_MATCH_PAYLOAD = {
   createdDate?: Date;
   id?: string;
 };
+
+export type PLAYER_WINS_STATS = {
+  playerName: string;
+  wins: number;
+};
+
+export type STATS = {
+  totalMatchesPlayed: number;
+  leastWins: PLAYER_WINS_STATS;
+  mostWins: PLAYER_WINS_STATS;
+  perPlayerStats: PLAYER_WINS_STATS[];
+};
