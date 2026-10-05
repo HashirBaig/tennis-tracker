@@ -14,7 +14,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
-import { addMatch, getMatchesListService } from "@/services/matchService";
+import {
+  addMatchService,
+  getMatchesListService,
+} from "@/services/matchService";
 import { toast } from "sonner";
 
 import type { TYPE_MATCH, TYPE_PLAYER_FORM } from "@/lib/const";
@@ -128,7 +131,7 @@ function LandingPage() {
         gamesWonByPlayerTwo: player2Games,
       };
 
-      const res = await addMatch(_data);
+      const res = await addMatchService(_data);
 
       if (res) {
         getAllMatchesList();

@@ -6,6 +6,10 @@ export const getMatchesListService = ({ page, limit }: TYPE_PAGINATION) => {
   return api.get(`${MATCH}?page=${page}&limit=${limit}`);
 };
 
-export const addMatch = (payload: TYPE_MATCH_PAYLOAD) => {
+export const getPlayerStatService = () => {
+  return api.get(`${MATCH}/stats`);
+};
+
+export const addMatchService = (payload: TYPE_MATCH_PAYLOAD) => {
   return api.post(`${MATCH}`, payload);
 };
