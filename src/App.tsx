@@ -10,13 +10,11 @@ import "./App.css";
 function App() {
   return (
     <div className="app">
-      <div className="absolute top-0 sm:left-64 min-h-screen w-full sm:w-[calc(100%-16rem)]">
+      <div className="absolute top-0 left-0 min-h-screen w-full pb-24 sm:left-64 sm:w-[calc(100%-16rem)] sm:pb-0">
         <AppSidebar />
 
         <Routes>
           <Route path="/" element={<LandingPage />} />
-        </Routes>
-        <Routes>
           <Route path="/stats" element={<Statistics />} />
         </Routes>
 

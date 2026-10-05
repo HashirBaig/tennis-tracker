@@ -24,7 +24,7 @@ function Sidebar() {
     fixed bottom-0 left-0 z-50 w-full p-4 sm:p-2
     sm:left-0 sm:top-0 sm:bottom-auto sm:w-64
     sm:h-screen sm:flex sm:flex-col sm:justify-between
-    border-r border-green-800 bg-green-800/90
+    border-r border-green-800 bg-green-800
     sm:shrink-0
   "
     >
