@@ -72,7 +72,9 @@ function Statistics() {
             </div>
 
             <div className="w-full mt-8">
-              <h6 className="text-green-950 font-semibold">Players</h6>
+              <h6 className="text-green-950 font-semibold text-2xl text-center sm:text-start">
+                Players
+              </h6>
 
               <div className="space-y-3 mt-4">
                 {/* PlayerCard */}

@@ -18,7 +18,7 @@ function MatchCard({ data }: MatchCardProps) {
   } = data;
 
   return (
-    <div className="w-full bg-green-800 p-4 rounded-2xl my-2 space-y-2 hover:focus-visible:border-green-600 hover:ring-2 hover:ring-green-800/70">
+    <div className="w-full bg-green-800/95 p-4 shadow-md rounded-2xl my-2 space-y-2 hover:focus-visible:border-green-600 hover:ring-2 hover:ring-green-800/70">
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-2">
           <span className="text-green-50 font-normal text-center w-fit">
