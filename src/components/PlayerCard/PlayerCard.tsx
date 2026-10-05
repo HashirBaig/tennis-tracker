@@ -3,7 +3,7 @@ import { CircleUserRound } from "lucide-react";
 
 function PlayerCard({ playerName, wins }: PLAYER_WINS_STATS) {
   return (
-    <div className="w-full bg-green-800/10 rounded-lg flex items-center justify-between py-4 px-3">
+    <div className="w-full bg-green-800/30 shadow-lg rounded-lg flex items-center justify-between py-4 px-3">
       <div className="flex items-center gap-2">
         <CircleUserRound className="size-10 text-green-950/90" />
         <span className="text-md text-green-950 font-normal">{playerName}</span>

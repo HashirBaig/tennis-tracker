@@ -2,6 +2,7 @@ import Wrapper from "@/components/Wrapper";
 import LayoutCard from "@/components/LayoutCard";
 import PlayerCard from "@/components/PlayerCard";
 import AlertCard from "@/components/AlertCard";
+import StatsCard from "@/components/StatsCard";
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -52,47 +53,28 @@ function Statistics() {
         {!isLoading && stats && (
           <section className="mt-8">
             <div className="flex items-center flex-wrap gap-4">
-              <div className="border-green-950 border rounded-lg w-25 p-3">
-                <h6 className="font-semibold text-green-950">Total</h6>
-
-                <div className="flex items-center">
-                  <span className="font-semibold bg-gray-800/70 text-red-50 w-6 h-6 text-sm rounded-full flex items-center justify-center">
-                    {stats?.totalMatchesPlayed}
-                  </span>
-                </div>
-              </div>
-
-              <div className="border-green-950 border rounded-lg w-30 p-3">
-                <h6 className="font-semibold text-green-950">Most Wins</h6>
-
-                <div className="flex items-center gap-2">
-                  <span className="font-normal text-green-950">
-                    {stats?.mostWins?.playerName}
-                  </span>
-                  <span className="font-semibold bg-green-800/70 text-green-50 w-6 h-6 text-sm rounded-full flex items-center justify-center">
-                    {stats?.mostWins?.wins}
-                  </span>
-                </div>
-              </div>
-
-              <div className="border-green-950 border rounded-lg w-30 p-3">
-                <h6 className="font-semibold text-green-950">Least Wins</h6>
-
-                <div className="flex items-center gap-2">
-                  <span className="font-normal text-green-950">
-                    {stats?.leastWins?.playerName}
-                  </span>
-                  <span className="font-semibold bg-red-800/70 text-red-50 w-6 h-6 text-sm rounded-full flex items-center justify-center">
-                    {stats?.leastWins?.wins}
-                  </span>
-                </div>
-              </div>
+              <StatsCard
+                label="Total Played"
+                playerName="Matches"
+                wins={stats?.totalMatchesPlayed}
+              />
+              <StatsCard
+                label="Most Wins"
+                playerName={stats?.mostWins?.playerName}
+                wins={stats?.mostWins?.wins}
+              />
+              <StatsCard
+                label="Most Wins"
+                playerName={stats?.leastWins?.playerName}
+                wins={stats?.leastWins?.wins}
+                loss={true}
+              />
             </div>
 
             <div className="w-full mt-8">
-              <h6 className="text-green-950 font-normal">Players</h6>
+              <h6 className="text-green-950 font-semibold">Players</h6>
 
-              <div className="space-y-3">
+              <div className="space-y-3 mt-4">
                 {/* PlayerCard */}
                 {stats?.perPlayerStats?.map((item, idx) => (
                   <PlayerCard

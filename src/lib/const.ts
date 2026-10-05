@@ -40,6 +40,8 @@ export type TYPE_MATCH_PAYLOAD = {
 export type PLAYER_WINS_STATS = {
   playerName: string;
   wins: number;
+  label?: string;
+  loss?: boolean;
 };
 
 export type STATS = {
