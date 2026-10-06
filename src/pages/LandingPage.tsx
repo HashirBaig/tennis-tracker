@@ -154,7 +154,11 @@ function LandingPage() {
         {/* Match Card */}
         <LayoutCard>
           <div className="flex items-center justify-center">
-            <img src={PlayersLogo} alt="Player logo" className="w-40 h-auto" />
+            <img
+              src={PlayersLogo}
+              alt="Player logo"
+              className="w-40 h-auto rounded-2xl shadow-md"
+            />
           </div>
 
           <form
@@ -162,7 +166,7 @@ function LandingPage() {
             onSubmit={handleOnSubmit}
             aria-disabled={isLoading}
           >
-            <div className="space-y-2">
+            <div className="space-y-2 rounded-2xl shadow-md p-4">
               <Label
                 htmlFor="player-1"
                 className="text-green-950 font-semibold text-md"
@@ -181,7 +185,7 @@ function LandingPage() {
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 rounded-2xl shadow-md p-4">
               <Label
                 htmlFor="player-2"
                 className="text-green-950 font-semibold text-md"
