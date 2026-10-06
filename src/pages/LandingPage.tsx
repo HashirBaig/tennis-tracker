@@ -136,8 +136,9 @@ function LandingPage() {
       if (res) {
         getAllMatchesList();
         setIsLoading(false);
-        toast.success("Match added successfully!");
         resetGame();
+
+        toast.success("Match added successfully!");
       }
     } catch (error) {
       setIsLoading(false);
@@ -161,11 +162,7 @@ function LandingPage() {
             />
           </div>
 
-          <form
-            className="mt-8 space-y-4"
-            onSubmit={handleOnSubmit}
-            aria-disabled={isLoading}
-          >
+          <form className="mt-8 space-y-4" onSubmit={handleOnSubmit}>
             <div className="space-y-2 rounded-2xl shadow-md p-4">
               <Label
                 htmlFor="player-1"
