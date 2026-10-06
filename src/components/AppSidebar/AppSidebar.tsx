@@ -21,7 +21,8 @@ function Sidebar() {
   return (
     <aside
       className="
-    fixed bottom-0 left-0 z-50 w-full p-4 sm:p-2
+    fixed bottom-2 left-1/14 z-50 w-6/7 px-3 py-2 sm:p-2
+    rounded-full
     sm:left-0 sm:top-0 sm:bottom-auto sm:w-64
     sm:h-screen sm:flex sm:flex-col sm:justify-between
     bg-green-50/30
